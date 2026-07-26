@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta name="theme-color" content="#080a10" />
+
+    <title>Download Vuttara Studio</title>
+
+    <style>
+      :root {
+        color-scheme: dark;
+
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+
+        color: #f7f8fc;
+        background: #080a10;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+
+        background:
+          radial-gradient(
+            circle at 50% 0,
+            rgba(142, 92, 255, 0.2),
+            transparent 38%
+          ),
+          #080a10;
+      }
+
+      main {
+        width: min(760px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 70px 0;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .back {
+        color: #a3abc0;
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+
+      .card {
+        margin-top: 34px;
+        padding: clamp(26px, 5vw, 48px);
+
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 22px;
+
+        background: rgba(17, 21, 34, 0.8);
+      }
+
+      .eyebrow {
+        margin: 0 0 15px;
+
+        color: #c0a4ff;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+
+        font-size: clamp(2.6rem, 8vw, 4.7rem);
+        line-height: 1;
+        letter-spacing: -0.06em;
+      }
+
+      .description {
+        margin: 22px 0 0;
+
+        color: #a3abc0;
+        line-height: 1.75;
+      }
+
+      .download-button {
+        display: inline-flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 30px;
+        padding: 0 22px;
+
+        border-radius: 12px;
+
+        background: linear-gradient(135deg, #8e5cff, #6845d8);
+        color: #ffffff;
+
+        font-weight: 760;
+        text-decoration: none;
+      }
+
+      .download-button[aria-disabled="true"] {
+        cursor: not-allowed;
+        filter: saturate(0.3);
+        opacity: 0.58;
+        pointer-events: none;
+      }
+
+      .details {
+        display: grid;
+        gap: 12px;
+
+        margin: 34px 0 0;
+        padding: 24px 0 0;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .details div {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+
+        color: #a3abc0;
+        font-size: 0.88rem;
+      }
+
+      .details strong {
+        color: #f7f8fc;
+        font-weight: 720;
+        text-align: right;
+      }
+
+      .notice {
+        margin-top: 28px;
+        padding: 15px 17px;
+
+        border: 1px solid rgba(192, 164, 255, 0.16);
+        border-radius: 11px;
+
+        background: rgba(142, 92, 255, 0.08);
+        color: #c8c0dc;
+
+        font-size: 0.86rem;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <a class="back" href="/">← Vuttara Studio</a>
+
+      <section class="card">
+        <p class="eyebrow">Windows download</p>
+
+        <h1>
+          Vuttara Studio
+          <span id="version">0.2.0</span>
+        </h1>
+
+        <p class="description">
+          Download the latest stable Vuttara Studio installer for
+          64-bit Windows.
+        </p>
+
+        <a
+          id="download-button"
+          class="download-button"
+          href="#"
+          aria-disabled="true"
+        >
+          Installer coming with version 0.2.0
+        </a>
+
+        <div class="details">
+          <div>
+            <span>Operating system</span>
+            <strong>Windows 10 or Windows 11</strong>
+          </div>
+
+          <div>
+            <span>Architecture</span>
+            <strong>x64</strong>
+          </div>
+
+          <div>
+            <span>Update channel</span>
+            <strong id="channel">Stable</strong>
+          </div>
+
+          <div>
+            <span>Installer integrity</span>
+            <strong id="integrity">Pending installer build</strong>
+          </div>
+        </div>
+
+        <div class="notice">
+          Vuttara Studio will never install an update or restart while
+          streaming, recording, or replay-buffer activity is active.
+        </div>
+      </section>
+    </main>
+
+    <script>
+      async function loadDownloadInformation() {
+        try {
+          const response = await fetch("/updates/latest.json", {
+            cache: "no-store"
+          });
+
+          if (!response.ok) {
+            throw new Error("Unable to load update metadata.");
+          }
+
+          const update = await response.json();
+
+          document.querySelector("#version").textContent =
+            update.displayVersion;
+
+          document.querySelector("#channel").textContent =
+            update.channel.charAt(0).toUpperCase() +
+            update.channel.slice(1);
+
+          const button =
+            document.querySelector("#download-button");
+
+          const validChecksum =
+            typeof update.integrity.sha256 === "string" &&
+            /^[a-fA-F0-9]{64}$/.test(update.integrity.sha256);
+
+          const validDownload =
+            typeof update.download.url === "string" &&
+            update.download.url.startsWith("https://");
+
+          if (validChecksum && validDownload) {
+            button.href = update.download.url;
+            button.textContent =
+              "Download " + update.download.fileName;
+
+            button.removeAttribute("aria-disabled");
+
+            document.querySelector("#integrity").textContent =
+              "SHA-256 published";
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      loadDownloadInformation();
+    </script>
+  </body>
+</html>

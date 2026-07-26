@@ -1,0 +1,33 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-labelledby="title"
+>
+  <title id="title">Vuttara Studio</title>
+
+  <defs>
+    <linearGradient
+      id="vuttaraGradient"
+      x1="8"
+      y1="4"
+      x2="56"
+      y2="60"
+    >
+      <stop offset="0" stop-color="#c0a4ff"/>
+      <stop offset="0.52" stop-color="#8e5cff"/>
+      <stop offset="1" stop-color="#52d6ff"/>
+    </linearGradient>
+  </defs>
+
+  <path
+    fill="url(#vuttaraGradient)"
+    d="M8 10h12l12 31 12-31h12L37 55H27L8 10Z"
+  />
+
+  <path
+    fill="#ffffff"
+    fill-opacity=".24"
+    d="m21 10 11 28 4-10-7-18h-8Z"
+  />
+</svg>
