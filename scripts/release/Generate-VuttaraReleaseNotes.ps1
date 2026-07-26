@@ -1,4 +1,4 @@
-﻿param(
+param(
     [Parameter()]
     [ValidatePattern("^\d+\.\d+\.\d+$")]
     [string]$Version = ""
@@ -51,6 +51,18 @@ function Convert-ToStringList {
         }
 
         return @($Value.Trim())
+    }
+
+    $valueProperties = @($Value.PSObject.Properties.Name)
+    if ($valueProperties.Count -gt 0) {
+        $objectText = Get-PropertyValue `
+            -Object $Value `
+            -Names @("text", "title", "description", "summary", "value") `
+            -Default ""
+
+        if (-not [string]::IsNullOrWhiteSpace([string]$objectText)) {
+            return @(([string]$objectText).Trim())
+        }
     }
 
     if ($Value -is [System.Collections.IEnumerable]) {
@@ -131,7 +143,20 @@ foreach ($file in $releaseFiles) {
     $summary = [string](Get-PropertyValue `
         -Object $data `
         -Names @("summary", "description", "releaseSummary", "notes") `
-        -Default "Vuttara Studio $releaseVersion release.")
+        -Default "")
+
+    if ([string]::IsNullOrWhiteSpace($summary) -and
+        $properties -contains "releaseNotes" -and
+        $null -ne $data.releaseNotes) {
+        $summary = [string](Get-PropertyValue `
+            -Object $data.releaseNotes `
+            -Names @("summary", "description", "title", "notes") `
+            -Default "")
+    }
+
+    if ([string]::IsNullOrWhiteSpace($summary)) {
+        $summary = "Vuttara Studio $releaseVersion release."
+    }
 
     $publishedAtRaw = Get-PropertyValue `
         -Object $data `
@@ -477,7 +502,7 @@ $cards
     </section>
 
     <p class="generated-note">
-      RELEASE_NOTES_AUTOMATION_V1 · Latest version:
+      RELEASE_NOTES_AUTOMATION_V1 · RELEASE_NOTES_OBJECT_RENDERING_REPAIR_V1 · Latest version:
       $(Encode-Html $sortedReleases[0].version)
     </p>
   </main>
@@ -510,6 +535,15 @@ if ($generatedHtml -notmatch "RELEASE_NOTES_AUTOMATION_V1") {
 
 if ($generatedHtml -notmatch [regex]::Escape($sortedReleases[0].version)) {
     throw "The generated release-notes page is missing the latest version."
+}
+
+if ($generatedHtml -match "@\{[^}]*=" -or
+    $generatedHtml -match "System\.Management\.Automation\.PSCustomObject") {
+    throw "The generated release-notes page contains raw PowerShell object text."
+}
+
+if ($generatedHtml -notmatch "RELEASE_NOTES_OBJECT_RENDERING_REPAIR_V1") {
+    throw "The generated release-notes page is missing the object-rendering repair marker."
 }
 
 Write-Host "PASS: Vuttara Studio release notes generated."

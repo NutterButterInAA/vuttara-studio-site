@@ -1,15 +1,15 @@
 {
     "product":  "Vuttara Studio",
     "channel":  "stable",
-    "generatedAt":  "2026-07-26T16:41:37.0785656+00:00",
+    "generatedAt":  "2026-07-26T17:01:02.2895316+00:00",
     "latestVersion":  "0.2.6",
     "releases":  [
                      {
                          "version":  "0.2.6",
-                         "summary":  "Vuttara Studio 0.2.6 release.",
+                         "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
                          "publishedAt":  "2026-07-26T16:17:06.0000000+00:00",
                          "changes":  [
-                                         "@{url=https://vuttarastudio.nuttabuttainaa.com/release-notes/; summary=Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.}"
+                                         "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
                                      ],
                          "installer":  {
                                            "filename":  "Vuttara-Studio-0.2.6-Setup.exe",
@@ -19,10 +19,10 @@
                      },
                      {
                          "version":  "0.2.5",
-                         "summary":  "Vuttara Studio 0.2.5 release.",
+                         "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
                          "publishedAt":  "2026-07-26T15:36:19.0000000+00:00",
                          "changes":  [
-                                         "@{url=https://vuttarastudio.nuttabuttainaa.com/release-notes/; summary=Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.}"
+                                         "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
                                      ],
                          "installer":  {
                                            "filename":  "Vuttara-Studio-0.2.5-Setup.exe",
@@ -32,10 +32,10 @@
                      },
                      {
                          "version":  "0.2.4",
-                         "summary":  "Vuttara Studio 0.2.4 release.",
+                         "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
                          "publishedAt":  "2026-07-26T08:23:42.0000000+00:00",
                          "changes":  [
-                                         "@{url=https://vuttarastudio.nuttabuttainaa.com/release-notes/; summary=Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.}"
+                                         "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
                                      ],
                          "installer":  {
                                            "filename":  "Vuttara-Studio-0.2.4-Setup.exe",
@@ -45,10 +45,10 @@
                      },
                      {
                          "version":  "0.2.3",
-                         "summary":  "Vuttara Studio 0.2.3 release.",
+                         "summary":  "Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses.",
                          "publishedAt":  "2026-07-26T07:12:07.0000000+00:00",
                          "changes":  [
-                                         "@{url=https://vuttarastudio.nuttabuttainaa.com/release-notes/; summary=Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses.}"
+                                         "Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses."
                                      ],
                          "installer":  {
                                            "filename":  "Vuttara-Studio-0.2.3-Setup.exe",
@@ -58,10 +58,10 @@
                      },
                      {
                          "version":  "0.2.2",
-                         "summary":  "Vuttara Studio 0.2.2 release.",
+                         "summary":  "Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks.",
                          "publishedAt":  "2026-07-26T06:31:02.0000000+00:00",
                          "changes":  [
-                                         "@{url=https://vuttarastudio.nuttabuttainaa.com/release-notes/; summary=Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks.}"
+                                         "Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks."
                                      ],
                          "installer":  {
                                            "filename":  "Vuttara-Studio-0.2.2-Setup.exe",
@@ -71,10 +71,10 @@
                      },
                      {
                          "version":  "0.2.1",
-                         "summary":  "Vuttara Studio 0.2.1 release.",
+                         "summary":  "Updater test release with an improved About Vuttara Studio dialog and clearer build information.",
                          "publishedAt":  "2026-07-26T05:55:56.0000000+00:00",
                          "changes":  [
-                                         "@{url=https://vuttarastudio.nuttabuttainaa.com/release-notes/; summary=Updater test release with an improved About Vuttara Studio dialog and clearer build information.}"
+                                         "Updater test release with an improved About Vuttara Studio dialog and clearer build information."
                                      ],
                          "installer":  {
                                            "filename":  "Vuttara-Studio-0.2.1-Setup.exe",
@@ -84,10 +84,10 @@
                      },
                      {
                          "version":  "0.2.0",
-                         "summary":  "Vuttara Studio 0.2.0 release.",
+                         "summary":  "First complete Windows installer with the secure Vuttara Studio updater workflow.",
                          "publishedAt":  "2026-07-26T04:50:50.0000000+00:00",
                          "changes":  [
-                                         "@{url=https://vuttarastudio.nuttabuttainaa.com/release-notes/; summary=First complete Windows installer with the secure Vuttara Studio updater workflow.}"
+                                         "First complete Windows installer with the secure Vuttara Studio updater workflow."
                                      ],
                          "installer":  {
                                            "filename":  "Vuttara-Studio-0.2.0-Setup.exe",
