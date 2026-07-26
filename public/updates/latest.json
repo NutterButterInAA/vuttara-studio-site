@@ -5,17 +5,17 @@
     "channel":  "stable",
     "version":  "0.2.3",
     "displayVersion":  "0.2.3",
-    "publishedAt":  "2026-07-26T07:02:54Z",
+    "publishedAt":  "2026-07-26T07:12:07Z",
     "minimumSupportedVersion":  "0.1.0",
     "mandatory":  false,
     "download":  {
                      "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.3/Vuttara-Studio-0.2.3-Setup.exe",
                      "fileName":  "Vuttara-Studio-0.2.3-Setup.exe",
-                     "size":  46172413
+                     "size":  46172747
                  },
     "integrity":  {
                       "algorithm":  "SHA-256",
-                      "sha256":  "d5c44a9e37ed1bf527f44049c3c3c4c6fc1eeae7ba4a2c3494cebd5ac5ff1141",
+                      "sha256":  "9bb83e7ee0fcab5816630414b0fb56b9a94ef8873a648cdefeb39d6f32f5c073",
                       "signatureRequired":  false,
                       "signatureStatus":  "planned"
                   },
