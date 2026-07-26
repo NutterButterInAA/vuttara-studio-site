@@ -38,7 +38,7 @@ app.innerHTML = `
   <header class="site-header">
     <a class="brand" href="/" aria-label="Vuttara Studio homepage">
       <img
-        src="/assets/vuttara-studio-mark.svg"
+        src="/assets/vuttara-studio-icon.png"
         alt=""
         width="42"
         height="42"
@@ -58,6 +58,12 @@ app.innerHTML = `
   <main>
     <section class="hero">
       <div class="hero-content">
+        <img
+          class="hero-brand-logo"
+          src="/assets/vuttara-studio-logo.png"
+          alt="Vuttara Studio"
+        />
+
         <p class="eyebrow">Native broadcasting software for Windows</p>
 
         <h1>
@@ -74,14 +80,6 @@ app.innerHTML = `
           <a class="button button-primary" href="/download/">
             Download Vuttara Studio
           </a>
-
-          <a
-            class="button button-secondary"
-            href="https://github.com/NutterButterInAA/vuttara-studio"
-            rel="noreferrer"
-          >
-            View application source
-          </a>
         </div>
 
         <p id="latest-version" class="latest-version">
@@ -90,6 +88,13 @@ app.innerHTML = `
       </div>
 
       <aside class="release-status">
+        <div class="hero-product-art-wrap">
+          <img
+            class="hero-product-art"
+            src="/assets/vuttara-studio-hero.png"
+            alt="Vuttara Studio broadcasting and recording software"
+          />
+        </div>
         <div class="release-status-heading">
           <span>Release status</span>
           <span class="status-indicator" aria-label="Active"></span>
