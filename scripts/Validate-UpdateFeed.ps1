@@ -161,6 +161,10 @@ $ReleaseFiles = @(
 )
 
 foreach ($ReleaseFile in $ReleaseFiles) {
+    # RELEASE_INDEX_SKIP_V1
+    if ($ReleaseFile.Name -eq 'index.json') {
+        continue
+    }
     Test-UpdateFile `
         -Path $ReleaseFile.FullName `
         -IsLatest $false
