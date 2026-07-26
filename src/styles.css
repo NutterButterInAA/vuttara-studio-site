@@ -662,3 +662,162 @@ a {
     height: 190px;
   }
 }
+
+/* Vuttara Studio inline download section */
+
+.inline-download-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 34px auto 84px;
+  scroll-margin-top: 92px;
+}
+
+.inline-download-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: 34px 48px;
+  padding: clamp(28px, 4vw, 48px);
+  overflow: hidden;
+  border: 1px solid rgba(142, 92, 255, 0.28);
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(112, 71, 236, 0.2),
+      transparent 42%
+    ),
+    linear-gradient(145deg, #151827, #10131d);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.inline-download-copy h2 {
+  margin: 8px 0 14px;
+  color: #fff;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.inline-download-description {
+  max-width: 650px;
+  margin: 0;
+  color: #b7bdce;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.inline-download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.inline-download-button {
+  min-width: 250px;
+  justify-content: center;
+  text-align: center;
+}
+
+.inline-download-button.is-disabled {
+  cursor: not-allowed;
+  color: rgba(255, 255, 255, 0.55);
+  background: #4f486b;
+  border-color: #5e557c;
+  box-shadow: none;
+}
+
+.inline-release-notes-link {
+  color: #c8b9ff;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.inline-release-notes-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.inline-download-details {
+  display: grid;
+  align-content: center;
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  background: rgba(7, 9, 16, 0.42);
+}
+
+.inline-download-details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 17px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.inline-download-details > div:last-child {
+  border-bottom: 0;
+}
+
+.inline-download-details span {
+  color: #9299ac;
+}
+
+.inline-download-details strong {
+  color: #fff;
+  text-align: right;
+}
+
+.inline-download-safety {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 15px 17px;
+  border: 1px solid rgba(142, 92, 255, 0.28);
+  border-radius: 11px;
+  color: #c9c0ec;
+  background: rgba(112, 71, 236, 0.1);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (max-width: 820px) {
+  .inline-download-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .inline-download-section {
+    width: min(100% - 24px, 1180px);
+    margin-bottom: 54px;
+  }
+
+  .inline-download-card {
+    gap: 28px;
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .inline-download-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .inline-download-button,
+  .inline-release-notes-link {
+    width: 100%;
+    text-align: center;
+  }
+
+  .inline-download-details > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .inline-download-details strong {
+    text-align: left;
+  }
+}
+
+/* End Vuttara Studio inline download section */

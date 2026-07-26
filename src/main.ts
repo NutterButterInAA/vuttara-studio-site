@@ -51,7 +51,7 @@ app.innerHTML = `
       <a href="#features">Features</a>
       <a href="#updates">Updates</a>
       <a href="/release-notes/">Release notes</a>
-      <a class="navigation-download" href="/download/">Download</a>
+      <a class="navigation-download" href="/#download">Download</a>
     </nav>
   </header>
 
@@ -77,7 +77,7 @@ app.innerHTML = `
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="/download/">
+          <a class="button button-primary" href="/#download">
             Download Vuttara Studio
           </a>
         </div>
@@ -240,7 +240,7 @@ app.innerHTML = `
     </div>
 
     <nav aria-label="Footer navigation">
-      <a href="/download/">Download</a>
+      <a href="/#download">Download</a>
       <a href="/release-notes/">Release notes</a>
       <a href="/updates/latest.json">Update feed</a>
       <a href="/updates/checksums/">Checksums</a>
@@ -316,3 +316,227 @@ async function loadLatestRelease(): Promise<void> {
 }
 
 void loadLatestRelease();
+
+/* Vuttara Studio inline download section */
+
+type VuttaraDownloadFeed = {
+  version?: string;
+  displayVersion?: string;
+  download?: {
+    url?: string;
+    fileName?: string;
+    size?: number;
+  };
+  integrity?: {
+    algorithm?: string;
+    sha256?: string;
+  };
+  releaseNotes?: {
+    url?: string;
+    summary?: string;
+  };
+};
+const isPublishedInstaller = (feed: VuttaraDownloadFeed): boolean => {
+  const version = feed.version?.trim() ?? '';
+  const fileName = feed.download?.fileName?.trim() ?? '';
+  const downloadUrl = feed.download?.url?.trim() ?? '';
+  const checksum = feed.integrity?.sha256?.trim() ?? '';
+
+  return (
+    /^\d+\.\d+\.\d+$/.test(version) &&
+    fileName === `Vuttara-Studio-${version}-Setup.exe` &&
+    /^https:\/\//i.test(downloadUrl) &&
+    /^[a-f0-9]{64}$/i.test(checksum) &&
+    feed.integrity?.algorithm === 'SHA-256'
+  );
+};
+
+const createInlineDownloadSection = async (): Promise<void> => {
+  if (window.location.pathname !== '/') {
+    return;
+  }
+
+  const existing = document.querySelector<HTMLElement>(
+    '#download[data-vuttara-inline-download]',
+  );
+
+  if (existing) {
+    return;
+  }
+
+  const pageMain =
+    document.querySelector<HTMLElement>('main') ??
+    document.querySelector<HTMLElement>('#app');
+
+  if (!pageMain) {
+    return;
+  }
+
+  const section = document.createElement('section');
+  section.id = 'download';
+  section.className = 'inline-download-section';
+  section.dataset.vuttaraInlineDownload = 'true';
+  section.setAttribute('aria-labelledby', 'inline-download-title');
+
+  section.innerHTML = `
+    <div class="inline-download-card">
+      <div class="inline-download-copy">
+        <p class="eyebrow">Windows download</p>
+        <h2 id="inline-download-title">Get Vuttara Studio</h2>
+        <p class="inline-download-description">
+          Native 64-bit broadcasting and recording software for Windows 10
+          and Windows 11.
+        </p>
+
+        <div class="inline-download-actions">
+          <span
+            class="button button-primary inline-download-button is-disabled"
+            id="inline-download-button"
+            aria-disabled="true"
+          >
+            Checking installer availabilityâ€¦
+          </span>
+
+          <a
+            class="inline-release-notes-link"
+            id="inline-release-notes-link"
+            href="/release-notes/"
+          >
+            View release notes
+          </a>
+        </div>
+      </div>
+
+      <div class="inline-download-details" aria-label="Download details">
+        <div>
+          <span>Version</span>
+          <strong id="inline-download-version">Checkingâ€¦</strong>
+        </div>
+        <div>
+          <span>Platform</span>
+          <strong>Windows 10 or 11 Â· x64</strong>
+        </div>
+        <div>
+          <span>Channel</span>
+          <strong>Stable</strong>
+        </div>
+        <div>
+          <span>Integrity</span>
+          <strong id="inline-download-integrity">Checkingâ€¦</strong>
+        </div>
+      </div>
+
+      <p class="inline-download-safety">
+        Updates are SHA-256 verified. Vuttara Studio will never install or
+        restart while streaming, recording, or replay-buffer activity is active.
+      </p>
+    </div>
+  `;
+
+  const footer = pageMain.querySelector<HTMLElement>('footer');
+
+  if (footer) {
+    pageMain.insertBefore(section, footer);
+  } else {
+    pageMain.append(section);
+  }
+
+  const versionElement =
+    section.querySelector<HTMLElement>('#inline-download-version');
+  const integrityElement =
+    section.querySelector<HTMLElement>('#inline-download-integrity');
+  const buttonElement =
+    section.querySelector<HTMLElement>('#inline-download-button');
+  const notesElement =
+    section.querySelector<HTMLAnchorElement>('#inline-release-notes-link');
+
+  try {
+    const response = await fetch('/updates/latest.json', {
+      cache: 'no-store',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Update feed returned HTTP ${response.status}.`);
+    }
+
+    const feed = (await response.json()) as VuttaraDownloadFeed;
+    const displayVersion =
+      feed.displayVersion?.trim() || feed.version?.trim() || 'Coming soon';
+
+    if (versionElement) {
+      versionElement.textContent = displayVersion;
+    }
+
+    if (notesElement && feed.releaseNotes?.url) {
+      notesElement.href = feed.releaseNotes.url;
+    }
+
+    if (isPublishedInstaller(feed)) {
+      if (integrityElement) {
+        integrityElement.textContent = 'SHA-256 verified';
+      }
+
+      if (buttonElement) {
+        const downloadLink = document.createElement('a');
+        downloadLink.id = buttonElement.id;
+        downloadLink.className =
+          'button button-primary inline-download-button';
+        downloadLink.href = feed.download?.url ?? '#';
+        downloadLink.textContent = `Download Vuttara Studio ${displayVersion}`;
+        downloadLink.setAttribute(
+          'download',
+          feed.download?.fileName ?? '',
+        );
+
+        buttonElement.replaceWith(downloadLink);
+      }
+    } else {
+      if (integrityElement) {
+        integrityElement.textContent = 'Pending installer build';
+      }
+
+      if (buttonElement) {
+        buttonElement.textContent =
+          `Installer coming with version ${displayVersion}`;
+      }
+    }
+  } catch (error) {
+    if (versionElement) {
+      versionElement.textContent = 'Coming soon';
+    }
+
+    if (integrityElement) {
+      integrityElement.textContent = 'Availability check failed';
+    }
+
+    if (buttonElement) {
+      buttonElement.textContent = 'Installer coming soon';
+    }
+
+    console.warn('Vuttara Studio download status could not be loaded.', error);
+  }
+};
+
+const scheduleInlineDownloadSection = (): void => {
+  window.setTimeout(() => {
+    void createInlineDownloadSection();
+  }, 0);
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener(
+    'DOMContentLoaded',
+    scheduleInlineDownloadSection,
+    { once: true },
+  );
+} else {
+  scheduleInlineDownloadSection();
+}
+
+window.addEventListener('popstate', scheduleInlineDownloadSection);
+window.addEventListener('hashchange', scheduleInlineDownloadSection);
+
+/* End Vuttara Studio inline download section */

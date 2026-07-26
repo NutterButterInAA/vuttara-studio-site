@@ -1,3 +1,5 @@
+/download /#download 301
+/download/ /#download 301
 /latest.json /updates/latest.json 301
 /update.json /updates/latest.json 301
 /releases/latest /release-notes/ 302
