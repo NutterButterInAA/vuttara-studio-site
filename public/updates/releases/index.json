@@ -1,9 +1,24 @@
 {
     "product":  "Vuttara Studio",
     "channel":  "stable",
-    "generatedAt":  "2026-07-26T17:01:02.2895316+00:00",
-    "latestVersion":  "0.2.6",
+    "generatedAt":  "2026-07-27T01:10:14.3925401+00:00",
+    "latestVersion":  "0.2.7",
     "releases":  [
+                     {
+                         "version":  "0.2.7",
+                         "summary":  "Adds persistent scene management so creators can create, switch, rename, duplicate, delete, reorder, and automatically save scenes.",
+                         "publishedAt":  "2026-07-26T21:36:02.0000000+00:00",
+                         "changes":  [
+                                         "Create, switch, rename, duplicate, delete, and reorder scenes.",
+                                         "Preserve source layers, transforms, visibility, locking, opacity, and selection independently for each scene.",
+                                         "Automatically save scene data and restore image, display, and window sources."
+                                     ],
+                         "installer":  {
+                                           "filename":  "Vuttara-Studio-0.2.7-Setup.exe",
+                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.7/Vuttara-Studio-0.2.7-Setup.exe"
+                                       },
+                         "source":  "/updates/releases/0.2.7.json"
+                     },
                      {
                          "version":  "0.2.6",
                          "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",

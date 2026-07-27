@@ -1,3 +1,4 @@
+# DYNAMIC_RELEASE_NOTES_V1
 param(
     [Parameter()]
     [ValidatePattern("^\d+\.\d+\.\d+$")]
@@ -140,16 +141,23 @@ foreach ($file in $releaseFiles) {
         throw "Invalid release version in $($file.Name): $releaseVersion"
     }
 
+    $releaseNotesObject = $null
+
+    if ($properties -contains "releaseNotes" -and
+        $null -ne $data.releaseNotes -and
+        $data.releaseNotes -isnot [string]) {
+        $releaseNotesObject = $data.releaseNotes
+    }
+
     $summary = [string](Get-PropertyValue `
         -Object $data `
         -Names @("summary", "description", "releaseSummary", "notes") `
         -Default "")
 
     if ([string]::IsNullOrWhiteSpace($summary) -and
-        $properties -contains "releaseNotes" -and
-        $null -ne $data.releaseNotes) {
+        $null -ne $releaseNotesObject) {
         $summary = [string](Get-PropertyValue `
-            -Object $data.releaseNotes `
+            -Object $releaseNotesObject `
             -Names @("summary", "description", "title", "notes") `
             -Default "")
     }
@@ -182,7 +190,6 @@ foreach ($file in $releaseFiles) {
         "features",
         "improvements",
         "fixes",
-        "releaseNotes",
         "notes"
     )) {
         if ($properties -contains $propertyName) {
@@ -190,9 +197,35 @@ foreach ($file in $releaseFiles) {
         }
     }
 
+    if ($null -ne $releaseNotesObject) {
+        $releaseNotesProperties = @(
+            $releaseNotesObject.PSObject.Properties.Name
+        )
+
+        foreach ($propertyName in @(
+            "changes",
+            "highlights",
+            "features",
+            "improvements",
+            "fixes"
+        )) {
+            if ($releaseNotesProperties -contains $propertyName) {
+                $changes += Convert-ToStringList `
+                    -Value $releaseNotesObject.$propertyName
+            }
+        }
+    }
+    elseif ($properties -contains "releaseNotes" -and
+        $data.releaseNotes -is [string]) {
+        $changes += Convert-ToStringList -Value $data.releaseNotes
+    }
+
     $changes = @(
         $changes |
-        Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+        Where-Object {
+            -not [string]::IsNullOrWhiteSpace($_) -and
+            $_ -notmatch '^@\{'
+        } |
         Select-Object -Unique
     )
 
@@ -256,7 +289,9 @@ $indexObject = [ordered]@{
 
 New-Item -ItemType Directory -Path $OutputRoot -Force | Out-Null
 
-$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+$utf8NoBom = New-Object `
+        -TypeName System.Text.UTF8Encoding `
+        -ArgumentList @($false)
 
 $indexJson = $indexObject | ConvertTo-Json -Depth 12
 
@@ -544,6 +579,11 @@ if ($generatedHtml -match "@\{[^}]*=" -or
 
 if ($generatedHtml -notmatch "RELEASE_NOTES_OBJECT_RENDERING_REPAIR_V1") {
     throw "The generated release-notes page is missing the object-rendering repair marker."
+}
+
+if ($generatedHtml -notmatch
+    [regex]::Escape([string]$sortedReleases[0].summary)) {
+    throw "The generated release-notes page is missing the latest summary."
 }
 
 Write-Host "PASS: Vuttara Studio release notes generated."

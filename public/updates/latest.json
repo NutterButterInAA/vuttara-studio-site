@@ -1,38 +1,43 @@
-﻿{
-    "schemaVersion":  1,
-    "product":  "Vuttara Studio",
-    "productId":  "com.nuttabuttainaa.vuttarastudio",
-    "channel":  "stable",
-    "version":  "0.2.7",
-    "displayVersion":  "0.2.7",
-    "publishedAt":  "2026-07-26T21:36:02Z",
-    "minimumSupportedVersion":  "0.1.0",
-    "mandatory":  false,
-    "download":  {
-                     "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.7/Vuttara-Studio-0.2.7-Setup.exe",
-                     "fileName":  "Vuttara-Studio-0.2.7-Setup.exe",
-                     "size":  46200624
-                 },
-    "integrity":  {
-                      "algorithm":  "SHA-256",
-                      "sha256":  "eee6dd0c6530cc8e817d94810780e33d12d1ee5df9a36ec25ac4da93a8ea4e40",
-                      "signatureRequired":  false,
-                      "signatureStatus":  "planned"
-                  },
-    "releaseNotes":  {
-                         "url":  "https://vuttarastudio.nuttabuttainaa.com/release-notes/",
-                         "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
-                     },
-    "requirements":  {
-                         "operatingSystem":  "Windows 10 or Windows 11",
-                         "architecture":  "x64"
-                     },
-    "installationPolicy":  {
-                               "allowBackgroundDownload":  true,
-                               "blockInstallWhileStreaming":  true,
-                               "blockInstallWhileRecording":  true,
-                               "blockInstallWhileReplayBufferActive":  true,
-                               "blockAutomaticRestartWhileBusy":  true,
-                               "requireUserApproval":  true
-                           }
+{
+  "schemaVersion": 1,
+  "product": "Vuttara Studio",
+  "productId": "com.nuttabuttainaa.vuttarastudio",
+  "channel": "stable",
+  "version": "0.2.7",
+  "displayVersion": "0.2.7",
+  "publishedAt": "2026-07-26T21:36:02Z",
+  "minimumSupportedVersion": "0.1.0",
+  "mandatory": false,
+  "download": {
+    "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.7/Vuttara-Studio-0.2.7-Setup.exe",
+    "fileName": "Vuttara-Studio-0.2.7-Setup.exe",
+    "size": 46200624
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "sha256": "eee6dd0c6530cc8e817d94810780e33d12d1ee5df9a36ec25ac4da93a8ea4e40",
+    "signatureRequired": false,
+    "signatureStatus": "planned"
+  },
+  "releaseNotes": {
+    "url": "https://vuttarastudio.nuttabuttainaa.com/release-notes/",
+    "summary": "Adds persistent scene management so creators can create, switch, rename, duplicate, delete, reorder, and automatically save scenes.",
+    "changes": [
+      "Create, switch, rename, duplicate, delete, and reorder scenes.",
+      "Preserve source layers, transforms, visibility, locking, opacity, and selection independently for each scene.",
+      "Automatically save scene data and restore image, display, and window sources."
+    ]
+  },
+  "requirements": {
+    "operatingSystem": "Windows 10 or Windows 11",
+    "architecture": "x64"
+  },
+  "installationPolicy": {
+    "allowBackgroundDownload": true,
+    "blockInstallWhileStreaming": true,
+    "blockInstallWhileRecording": true,
+    "blockInstallWhileReplayBufferActive": true,
+    "blockAutomaticRestartWhileBusy": true,
+    "requireUserApproval": true
+  }
 }

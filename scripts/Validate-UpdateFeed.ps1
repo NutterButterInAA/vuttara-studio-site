@@ -1,3 +1,4 @@
+# DYNAMIC_RELEASE_NOTES_V1
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
@@ -26,6 +27,85 @@ function Test-Version {
     )
 
     return $Version -match "^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$"
+}
+
+function Get-OptionalPropertyValue {
+    param(
+        [Parameter(Mandatory)]
+        $Object,
+
+        [Parameter(Mandatory)]
+        [string]$Name
+    )
+
+    if ($null -eq $Object) {
+        return $null
+    }
+
+    $Property = $Object.PSObject.Properties[$Name]
+
+    if ($null -eq $Property) {
+        return $null
+    }
+
+    return $Property.Value
+}
+
+function Get-ReleaseChanges {
+    param(
+        [Parameter(Mandatory)]
+        $Update
+    )
+
+    $Result = @()
+    $ReleaseNotes =
+        Get-OptionalPropertyValue `
+            -Object $Update `
+            -Name "releaseNotes"
+
+    if ($null -ne $ReleaseNotes -and
+        $ReleaseNotes -isnot [string]) {
+        $Changes =
+            Get-OptionalPropertyValue `
+                -Object $ReleaseNotes `
+                -Name "changes"
+
+        if ($null -ne $Changes) {
+            foreach ($Change in @($Changes)) {
+                $Text = ([string]$Change).Trim()
+
+                if (-not [string]::IsNullOrWhiteSpace($Text)) {
+                    $Result += $Text
+                }
+            }
+        }
+    }
+
+    if ($Result.Count -eq 0) {
+        $Summary = ""
+
+        if ($null -ne $ReleaseNotes) {
+            if ($ReleaseNotes -is [string]) {
+                $Summary = ([string]$ReleaseNotes).Trim()
+            }
+            else {
+                $SummaryValue =
+                    Get-OptionalPropertyValue `
+                        -Object $ReleaseNotes `
+                        -Name "summary"
+
+                if ($null -ne $SummaryValue) {
+                    $Summary = ([string]$SummaryValue).Trim()
+                }
+            }
+        }
+
+        if (-not [string]::IsNullOrWhiteSpace($Summary)) {
+            $Result += $Summary
+        }
+    }
+
+    return @($Result)
 }
 
 function Test-UpdateFile {
@@ -103,6 +183,42 @@ function Test-UpdateFile {
         ([string]$Update.releaseNotes.url).StartsWith("https://") `
         "Release-notes URL must use HTTPS."
 
+    $ReleaseSummary = [string]$Update.releaseNotes.summary
+
+    Assert-Valid `
+        (-not [string]::IsNullOrWhiteSpace($ReleaseSummary)) `
+        "Release-notes summary must not be empty."
+
+    Assert-Valid `
+        ($ReleaseSummary.Length -le 600) `
+        "Release-notes summary must not exceed 600 characters."
+
+    Assert-Valid `
+        ($ReleaseSummary -notmatch "^@\{") `
+        "Release-notes summary must not contain raw PowerShell object text."
+
+    $ReleaseChanges = @(Get-ReleaseChanges -Update $Update)
+
+    Assert-Valid `
+        ($ReleaseChanges.Count -gt 0) `
+        "At least one release-notes change is required."
+
+    foreach ($ReleaseChange in $ReleaseChanges) {
+        $ReleaseChangeText = [string]$ReleaseChange
+
+        Assert-Valid `
+            (-not [string]::IsNullOrWhiteSpace($ReleaseChangeText)) `
+            "Release-notes changes cannot contain an empty item."
+
+        Assert-Valid `
+            ($ReleaseChangeText.Length -le 600) `
+            "A release-notes change must not exceed 600 characters."
+
+        Assert-Valid `
+            ($ReleaseChangeText -notmatch "^@\{") `
+            "Release-notes changes must not contain raw PowerShell object text."
+    }
+
     Assert-Valid `
         ([bool]$Update.installationPolicy.blockInstallWhileStreaming) `
         "Streaming installation protection must be enabled."
@@ -145,6 +261,32 @@ function Test-UpdateFile {
             ([string]$ReleaseUpdate.download.fileName -eq
                 [string]$Update.download.fileName) `
             "Latest and release installer names do not match."
+
+        Assert-Valid `
+            ([string]$ReleaseUpdate.releaseNotes.summary -eq
+                [string]$Update.releaseNotes.summary) `
+            "Latest and release summaries do not match."
+
+        $LatestChanges = @(
+            Get-ReleaseChanges -Update $Update
+        )
+        $VersionedChanges = @(
+            Get-ReleaseChanges -Update $ReleaseUpdate
+        )
+
+        Assert-Valid `
+            ($VersionedChanges.Count -eq $LatestChanges.Count) `
+            "Latest and release change counts do not match."
+
+        for ($ChangeIndex = 0;
+            $ChangeIndex -lt $LatestChanges.Count;
+            $ChangeIndex++) {
+            Assert-Valid `
+                ([string]$VersionedChanges[$ChangeIndex] -eq
+                    [string]$LatestChanges[$ChangeIndex]) `
+                ("Latest and release change item {0} do not match." -f `
+                    ($ChangeIndex + 1))
+        }
     }
 
     Write-Host "PASS: $Path" -ForegroundColor Green
