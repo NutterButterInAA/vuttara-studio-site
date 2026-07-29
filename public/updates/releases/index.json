@@ -1,114 +1,132 @@
 {
-    "product":  "Vuttara Studio",
-    "channel":  "stable",
-    "generatedAt":  "2026-07-27T01:10:14.3925401+00:00",
-    "latestVersion":  "0.2.7",
-    "releases":  [
-                     {
-                         "version":  "0.2.7",
-                         "summary":  "Adds persistent scene management so creators can create, switch, rename, duplicate, delete, reorder, and automatically save scenes.",
-                         "publishedAt":  "2026-07-26T21:36:02.0000000+00:00",
-                         "changes":  [
-                                         "Create, switch, rename, duplicate, delete, and reorder scenes.",
-                                         "Preserve source layers, transforms, visibility, locking, opacity, and selection independently for each scene.",
-                                         "Automatically save scene data and restore image, display, and window sources."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.7-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.7/Vuttara-Studio-0.2.7-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.7.json"
-                     },
-                     {
-                         "version":  "0.2.6",
-                         "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
-                         "publishedAt":  "2026-07-26T16:17:06.0000000+00:00",
-                         "changes":  [
-                                         "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.6-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.6/Vuttara-Studio-0.2.6-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.6.json"
-                     },
-                     {
-                         "version":  "0.2.5",
-                         "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
-                         "publishedAt":  "2026-07-26T15:36:19.0000000+00:00",
-                         "changes":  [
-                                         "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.5-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.5/Vuttara-Studio-0.2.5-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.5.json"
-                     },
-                     {
-                         "version":  "0.2.4",
-                         "summary":  "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
-                         "publishedAt":  "2026-07-26T08:23:42.0000000+00:00",
-                         "changes":  [
-                                         "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.4-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.4/Vuttara-Studio-0.2.4-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.4.json"
-                     },
-                     {
-                         "version":  "0.2.3",
-                         "summary":  "Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses.",
-                         "publishedAt":  "2026-07-26T07:12:07.0000000+00:00",
-                         "changes":  [
-                                         "Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.3-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.3/Vuttara-Studio-0.2.3-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.3.json"
-                     },
-                     {
-                         "version":  "0.2.2",
-                         "summary":  "Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks.",
-                         "publishedAt":  "2026-07-26T06:31:02.0000000+00:00",
-                         "changes":  [
-                                         "Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.2-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.2/Vuttara-Studio-0.2.2-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.2.json"
-                     },
-                     {
-                         "version":  "0.2.1",
-                         "summary":  "Updater test release with an improved About Vuttara Studio dialog and clearer build information.",
-                         "publishedAt":  "2026-07-26T05:55:56.0000000+00:00",
-                         "changes":  [
-                                         "Updater test release with an improved About Vuttara Studio dialog and clearer build information."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.1-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.1/Vuttara-Studio-0.2.1-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.1.json"
-                     },
-                     {
-                         "version":  "0.2.0",
-                         "summary":  "First complete Windows installer with the secure Vuttara Studio updater workflow.",
-                         "publishedAt":  "2026-07-26T04:50:50.0000000+00:00",
-                         "changes":  [
-                                         "First complete Windows installer with the secure Vuttara Studio updater workflow."
-                                     ],
-                         "installer":  {
-                                           "filename":  "Vuttara-Studio-0.2.0-Setup.exe",
-                                           "url":  "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.0/Vuttara-Studio-0.2.0-Setup.exe"
-                                       },
-                         "source":  "/updates/releases/0.2.0.json"
-                     }
-                 ]
+  "product": "Vuttara Studio",
+  "channel": "stable",
+  "generatedAt": "2026-07-29T05:51:26.2439342\u002B00:00",
+  "latestVersion": "0.2.9",
+  "releases": [
+    {
+      "version": "0.2.9",
+      "summary": "Audio Mixer V2 adds native Windows desktop and microphone capture, reliable mixed-audio recording, improved metering, and safer output levels.",
+      "publishedAt": "2026-07-29T05:51:26Z",
+      "changes": [
+        "Added native WASAPI desktop loopback and microphone capture routed into a 48 kHz stereo program bus.",
+        "Added Desktop Audio and Microphone mixing with volume, mute, logarithmic dBFS meters, and green, yellow, and red level zones.",
+        "Improved multichannel downmixing and limiter behavior to prevent clipping and audible distortion.",
+        "Improved WAV recording continuity so recordings retain their beginning, ending, and elapsed timeline, with safe .part-file finalization.",
+        "Added bounded mixed-audio output queueing and automated audio routing and recording-continuity tests.",
+        "Documented that mixed PCM is queued for output while RTMP audio encoding and transmission remain future work."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.9-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.9/Vuttara-Studio-0.2.9-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.9.json"
+    },
+    {
+      "version": "0.2.7",
+      "summary": "Adds persistent scene management so creators can create, switch, rename, duplicate, delete, reorder, and automatically save scenes.",
+      "publishedAt": "2026-07-26T21:36:02.0000000\u002B00:00",
+      "changes": [
+        "Create, switch, rename, duplicate, delete, and reorder scenes.",
+        "Preserve source layers, transforms, visibility, locking, opacity, and selection independently for each scene.",
+        "Automatically save scene data and restore image, display, and window sources."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.7-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.7/Vuttara-Studio-0.2.7-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.7.json"
+    },
+    {
+      "version": "0.2.6",
+      "summary": "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
+      "publishedAt": "2026-07-26T16:17:06.0000000\u002B00:00",
+      "changes": [
+        "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.6-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.6/Vuttara-Studio-0.2.6-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.6.json"
+    },
+    {
+      "version": "0.2.5",
+      "summary": "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
+      "publishedAt": "2026-07-26T15:36:19.0000000\u002B00:00",
+      "changes": [
+        "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.5-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.5/Vuttara-Studio-0.2.5-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.5.json"
+    },
+    {
+      "version": "0.2.4",
+      "summary": "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.",
+      "publishedAt": "2026-07-26T08:23:42.0000000\u002B00:00",
+      "changes": [
+        "Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.4-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.4/Vuttara-Studio-0.2.4-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.4.json"
+    },
+    {
+      "version": "0.2.3",
+      "summary": "Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses.",
+      "publishedAt": "2026-07-26T07:12:07.0000000\u002B00:00",
+      "changes": [
+        "Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.3-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.3/Vuttara-Studio-0.2.3-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.3.json"
+    },
+    {
+      "version": "0.2.2",
+      "summary": "Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks.",
+      "publishedAt": "2026-07-26T06:31:02.0000000\u002B00:00",
+      "changes": [
+        "Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.2-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.2/Vuttara-Studio-0.2.2-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.2.json"
+    },
+    {
+      "version": "0.2.1",
+      "summary": "Updater test release with an improved About Vuttara Studio dialog and clearer build information.",
+      "publishedAt": "2026-07-26T05:55:56.0000000\u002B00:00",
+      "changes": [
+        "Updater test release with an improved About Vuttara Studio dialog and clearer build information."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.1-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.1/Vuttara-Studio-0.2.1-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.1.json"
+    },
+    {
+      "version": "0.2.0",
+      "summary": "First complete Windows installer with the secure Vuttara Studio updater workflow.",
+      "publishedAt": "2026-07-26T04:50:50.0000000\u002B00:00",
+      "changes": [
+        "First complete Windows installer with the secure Vuttara Studio updater workflow."
+      ],
+      "installer": {
+        "filename": "Vuttara-Studio-0.2.0-Setup.exe",
+        "url": "https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.0/Vuttara-Studio-0.2.0-Setup.exe"
+      },
+      "source": "/updates/releases/0.2.0.json"
+    }
+  ]
 }

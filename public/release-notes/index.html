@@ -1,355 +1,80 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Release notes, improvements, fixes, and download information for every Vuttara Studio release."
-  />
-  <title>Release notes | Vuttara Studio</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #070910;
-      color: #f7f7ff;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 75% -10%, rgba(103, 72, 255, 0.18), transparent 35%),
-        #070910;
-    }
-
-    a { color: inherit; }
-
-    .page-shell {
-      width: min(980px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 72px 0 96px;
-    }
-
-    .back-link {
-      display: inline-flex;
-      margin-bottom: 38px;
-      color: #b8c0dd;
-      text-decoration: none;
-    }
-
-    .back-link:hover { color: #ffffff; }
-
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(3.5rem, 10vw, 6.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.07em;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: 28px 0 56px;
-      color: #b8c0dd;
-      font-size: 1.04rem;
-      line-height: 1.7;
-    }
-
-    .release-stack {
-      display: grid;
-      gap: 24px;
-    }
-
-    .release-card {
-      padding: clamp(28px, 5vw, 48px);
-      border: 1px solid #292d3d;
-      border-radius: 22px;
-      background: rgba(17, 20, 31, 0.92);
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
-    }
-
-    .release-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #2b3040;
-    }
-
-    .release-kicker {
-      margin: 0 0 8px;
-      color: #9ba5c6;
-      font-size: 0.84rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .release-header h2 {
-      margin: 0;
-      font-size: clamp(1.7rem, 4vw, 2.25rem);
-      letter-spacing: -0.035em;
-    }
-
-    .release-channel {
-      flex: 0 0 auto;
-      padding: 7px 11px;
-      border: 1px solid #39405a;
-      border-radius: 999px;
-      color: #c7cdef;
-      font-size: 0.78rem;
-    }
-
-    .release-summary {
-      margin: 26px 0;
-      color: #c4cae1;
-      line-height: 1.7;
-    }
-
-    .release-card h3 {
-      margin: 0 0 14px;
-      font-size: 1rem;
-    }
-
-    .release-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding-left: 22px;
-      color: #b9c3e4;
-      line-height: 1.55;
-    }
-
-    .release-download {
-      display: inline-flex;
-      margin-top: 28px;
-      padding: 12px 17px;
-      border-radius: 10px;
-      background: #f4f3ff;
-      color: #10111a;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .release-download:hover {
-      transform: translateY(-1px);
-    }
-
-    .generated-note {
-      margin-top: 32px;
-      color: #78809c;
-      font-size: 0.8rem;
-    }
-
-    @media (max-width: 620px) {
-      .page-shell {
-        width: min(100% - 24px, 980px);
-        padding-top: 38px;
-      }
-
-      .release-header {
-        display: grid;
-      }
-
-      .release-channel {
-        width: fit-content;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vuttara Studio Release Notes</title>
+  <meta name="description" content="Release notes and installer changes for Vuttara Studio.">
+  <style>body{margin:0;background:#0b0d12;color:#f4f6fb;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:980px;margin:auto;padding:48px 22px 80px}a{color:#9fb8ff}header{margin-bottom:30px}.tagline{color:#aeb6c7}.release{background:#141824;border:1px solid #293146;border-radius:16px;padding:24px;margin:18px 0}.meta{color:#9da7ba;font-size:.92rem}.badge{display:inline-block;padding:3px 10px;border-radius:999px;background:#24304d;color:#cbd8ff;font-size:.8rem;margin-left:8px}h1,h2{line-height:1.15}li{margin:.45rem 0}</style>
 </head>
-<body>
-  <main class="page-shell">
-    <a class="back-link" href="/">Back to Vuttara Studio</a>
-
-    <section class="hero">
-      <h1>Release notes</h1>
-      <p>
-        Changes, fixes, improvements, download information, and known release
-        details for every published Vuttara Studio version.
-      </p>
-    </section>
-
-    <section class="release-stack" aria-label="Vuttara Studio releases">
-      <article class="release-card" id="v0.2.7">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.7</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">Adds persistent scene management so creators can create, switch, rename, duplicate, delete, reorder, and automatically save scenes.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>Create, switch, rename, duplicate, delete, and reorder scenes.</li>
-              <li>Preserve source layers, transforms, visibility, locking, opacity, and selection independently for each scene.</li>
-              <li>Automatically save scene data and restore image, display, and window sources.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.7/Vuttara-Studio-0.2.7-Setup.exe">
-              Download Vuttara-Studio-0.2.7-Setup.exe
-            </a>
-      </article>
-      <article class="release-card" id="v0.2.6">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.6</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.6/Vuttara-Studio-0.2.6-Setup.exe">
-              Download Vuttara-Studio-0.2.6-Setup.exe
-            </a>
-      </article>
-      <article class="release-card" id="v0.2.5">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.5</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.5/Vuttara-Studio-0.2.5-Setup.exe">
-              Download Vuttara-Studio-0.2.5-Setup.exe
-            </a>
-      </article>
-      <article class="release-card" id="v0.2.4">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.4</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.4/Vuttara-Studio-0.2.4-Setup.exe">
-              Download Vuttara-Studio-0.2.4-Setup.exe
-            </a>
-      </article>
-      <article class="release-card" id="v0.2.3">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.3</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.3/Vuttara-Studio-0.2.3-Setup.exe">
-              Download Vuttara-Studio-0.2.3-Setup.exe
-            </a>
-      </article>
-      <article class="release-card" id="v0.2.2">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.2</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.2/Vuttara-Studio-0.2.2-Setup.exe">
-              Download Vuttara-Studio-0.2.2-Setup.exe
-            </a>
-      </article>
-      <article class="release-card" id="v0.2.1">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.1</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">Updater test release with an improved About Vuttara Studio dialog and clearer build information.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>Updater test release with an improved About Vuttara Studio dialog and clearer build information.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.1/Vuttara-Studio-0.2.1-Setup.exe">
-              Download Vuttara-Studio-0.2.1-Setup.exe
-            </a>
-      </article>
-      <article class="release-card" id="v0.2.0">
-        <header class="release-header">
-          <div>
-            <p class="release-kicker">July 26, 2026</p>
-            <h2>Vuttara Studio 0.2.0</h2>
-          </div>
-          <span class="release-channel">Stable</span>
-        </header>
-
-        <p class="release-summary">First complete Windows installer with the secure Vuttara Studio updater workflow.</p>
-
-        <h3>Changes in this release</h3>
-        <ul class="release-list">
-              <li>First complete Windows installer with the secure Vuttara Studio updater workflow.</li>
-
-        </ul>
-
-            <a class="release-download" href="https://github.com/NutterButterInAA/vuttara-studio/releases/download/v0.2.0/Vuttara-Studio-0.2.0-Setup.exe">
-              Download Vuttara-Studio-0.2.0-Setup.exe
-            </a>
-      </article>
-
-    </section>
-
-    <p class="generated-note">
-      RELEASE_NOTES_AUTOMATION_V1 Â· RELEASE_NOTES_OBJECT_RENDERING_REPAIR_V1 Â· Latest version:
-      0.2.7
-    </p>
-  </main>
-</body>
-</html>
+<body><main>
+<header><h1>Vuttara Studio release notes</h1><p class="tagline">Create. Broadcast. Be seen.</p><p><a href="/">Return to Vuttara Studio</a></p></header>
+<article class="release" id="v0.2.9">
+<h2>Vuttara Studio 0.2.9 <span class="badge">Stable</span></h2><p class="meta">Published July 29, 2026</p>
+<p>Audio Mixer V2 adds native Windows desktop and microphone capture, reliable mixed-audio recording, improved metering, and safer output levels.</p>
+<ol>
+<li>Added native WASAPI desktop loopback and microphone capture routed into a 48 kHz stereo program bus.</li>
+<li>Added Desktop Audio and Microphone mixing with volume, mute, logarithmic dBFS meters, and green, yellow, and red level zones.</li>
+<li>Improved multichannel downmixing and limiter behavior to prevent clipping and audible distortion.</li>
+<li>Improved WAV recording continuity so recordings retain their beginning, ending, and elapsed timeline, with safe .part-file finalization.</li>
+<li>Added bounded mixed-audio output queueing and automated audio routing and recording-continuity tests.</li>
+<li>Documented that mixed PCM is queued for output while RTMP audio encoding and transmission remain future work.</li>
+</ol>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.9">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.8">
+<h2>Vuttara Studio 0.2.8 <span class="badge">Stable</span></h2><p class="meta">Published July 27, 2026</p>
+<p>Adds a functional Windows audio mixer with live Desktop Audio and Microphone monitoring, device selection, persistent volume and mute controls, automatic device refresh, and safe fallback when a selected device becomes unavailable.</p>
+<ol>
+<li>Added live Desktop Audio endpoint monitoring.</li>
+<li>Added live Microphone endpoint monitoring.</li>
+<li>Added Windows playback-device selection.</li>
+<li>Added Windows recording-device selection.</li>
+<li>Added support for following the default Windows audio devices.</li>
+<li>Added independent Desktop Audio and Microphone level meters.</li>
+<li>Added independent volume controls for both mixer channels.</li>
+<li>Added independent mute controls for both mixer channels.</li>
+<li>Added automatic fallback when a saved audio device is unavailable.</li>
+<li>Added automatic audio-device refresh every three seconds.</li>
+<li>Added a manual audio-device Refresh button.</li>
+<li>Added persistent mixer device, volume, and mute settings.</li>
+<li>Added atomic audio mixer settings writes to prevent corrupted settings.</li>
+</ol>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.8">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.7">
+<h2>Vuttara Studio 0.2.7 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>Adds persistent scene management so creators can create, switch, rename, duplicate, delete, reorder, and automatically save scenes.</p>
+<ol>
+<li>Create, switch, rename, duplicate, delete, and reorder scenes.</li>
+<li>Preserve source layers, transforms, visibility, locking, opacity, and selection independently for each scene.</li>
+<li>Automatically save scene data and restore image, display, and window sources.</li>
+</ol>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.7">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.6">
+<h2>Vuttara Studio 0.2.6 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</p>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.6">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.5">
+<h2>Vuttara Studio 0.2.5 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</p>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.5">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.4">
+<h2>Vuttara Studio 0.2.4 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>Completes the UI encoding repair by using a stable ASCII resolution separator and publishes through the hardened release pipeline.</p>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.4">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.3">
+<h2>Vuttara Studio 0.2.3 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>Repairs corrupted UI symbols and punctuation throughout Vuttara Studio, including resolution separators, status dashes, arrows, minus signs, and ellipses.</p>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.3">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.2">
+<h2>Vuttara Studio 0.2.2 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>Strengthens update safety with a shared output-activity controller for streaming, recording, and replay-buffer interlocks.</p>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.2">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.1">
+<h2>Vuttara Studio 0.2.1 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>Updater test release with an improved About Vuttara Studio dialog and clearer build information.</p>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.1">View release on GitHub</a></p></article>
+<article class="release" id="v0.2.0">
+<h2>Vuttara Studio 0.2.0 <span class="badge">Stable</span></h2><p class="meta">Published July 26, 2026</p>
+<p>First complete Windows installer with the secure Vuttara Studio updater workflow.</p>
+<p><a href="https://github.com/NutterButterInAA/vuttara-studio/releases/tag/v0.2.0">View release on GitHub</a></p></article>
+</main></body></html>
