@@ -8,7 +8,10 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "validate:update": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/Validate-UpdateFeed.ps1",
-    "validate": "npm run validate:update && npm run build"
+    "validate": "npm run release:generate && npm run release:check && npm run validate:update && npm run build",
+    "release:generate": "node ./scripts/release/generate-clean-release.mjs",
+    "release:check": "node ./scripts/release/generate-clean-release.mjs --check",
+    "prebuild": "npm run release:generate"
   },
   "devDependencies": {
     "typescript": "^5.9.0",

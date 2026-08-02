@@ -43,7 +43,7 @@ app.innerHTML = `
   <section class="section safety" id="safety"><div><p class="eyebrow">Update safety</p><h2>Your production stays in control.</h2><p>Vuttara Studio never installs or restarts without approval and blocks installation during active streaming, recording, or replay-buffer output.</p></div><ul><li>HTTPS-only downloads</li><li>SHA-256 integrity checks</li><li>User-approved installation</li><li>Active-output protection</li></ul></section>
   <section class="section download-strip"><div><p class="eyebrow">Ready for Windows</p><h2>Download Vuttara Studio.</h2><p id="download-summary">Loading current release information…</p></div><a class="button button-primary" href="/download/">Open download page</a></section>
 </main>
-<footer class="site-footer"><div><strong>Vuttara Studio</strong><span>Native broadcasting software for Windows.</span></div><nav><a href="/download/">Download</a><a href="/release-notes/">Release notes</a><a href="/updates/latest.json">Update feed</a><a href="https://github.com/NutterButterInAA/vuttara-studio">GitHub</a></nav></footer>`;
+<footer class="site-footer"><div><strong>Vuttara Studio</strong><span>Native broadcasting software for Windows.</span></div><nav><a href="/download/">Download</a><a href="/release-notes/">Release notes</a><a href="/updates/clean-rewrite/latest.json">Update feed</a><a href="https://github.com/NutterButterInAA/vuttara-studio">GitHub</a></nav></footer>`;
 
 const validFeed = (feed: UpdateFeed): boolean => {
   const version = feed.version?.trim() ?? "";
@@ -62,7 +62,7 @@ async function loadRelease(): Promise<void> {
   const summary = document.querySelector<HTMLElement>("#download-summary");
   const heroDownload = document.querySelector<HTMLAnchorElement>("#hero-download");
   try {
-    const response = await fetch(`/updates/latest.json?ts=${Date.now()}`, { cache: "no-store", headers: { Accept: "application/json" } });
+    const response = await fetch(`/updates/clean-rewrite/latest.json?ts=${Date.now()}`, { cache: "no-store", headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const feed = await parseFeed(response);
     if (!validFeed(feed)) throw new Error("Installer metadata failed validation");
